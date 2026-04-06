@@ -1,6 +1,36 @@
-import mongoose from 'mongoose';
+import mongoose, { Model, Schema } from 'mongoose';
 
-const PhoneSchema = new mongoose.Schema({
+interface IPhone {
+  title: string;
+  brand: string;
+  model: string;
+  condition: 'new' | 'used' | 'refurbished';
+  price: number;
+  description: string;
+  images: string[];
+  location: {
+    city: string;
+    area: string;
+  };
+  specifications: {
+    storage: string;
+    ram: string;
+    battery: string;
+    camera: string;
+    display: string;
+    os: string;
+  };
+  seller: mongoose.Types.ObjectId;
+  isActive: boolean;
+  isSold: boolean;
+  views: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+type PhoneModel = Model<IPhone>;
+
+const PhoneSchema = new Schema<IPhone, PhoneModel>({
   title: {
     type: String,
     required: true,
@@ -100,4 +130,6 @@ PhoneSchema.index({ brand: 1, model: 1 });
 PhoneSchema.index({ price: 1 });
 PhoneSchema.index({ createdAt: -1 });
 
-export default mongoose.models.Phone || mongoose.model('Phone', PhoneSchema);
+const Phone = (mongoose.models.Phone as PhoneModel) || mongoose.model<IPhone, PhoneModel>('Phone', PhoneSchema);
+
+export default Phone;
