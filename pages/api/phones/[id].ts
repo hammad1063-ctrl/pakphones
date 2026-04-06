@@ -11,6 +11,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(401).json({ message: 'Unauthorized' });
   }
 
+  const currentUser = session.user as { id?: string; role?: string };
+
   await connectToDatabase();
 
   const { id } = req.query;
@@ -45,7 +47,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
 
         // Check if user owns the phone or is admin
-        if (phone.seller.toString() !== session.user.id && session.user.role !== 'admin') {
+        if (phone.seller.toString() !== currentUser.id && currentUser.role !== 'admin') {
           return res.status(403).json({ message: 'Forbidden' });
         }
 
@@ -101,7 +103,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
 
         // Check if user owns the phone or is admin
-        if (phone.seller.toString() !== session.user.id && session.user.role !== 'admin') {
+        if (phone.seller.toString() !== currentUser.id && currentUser.role !== 'admin') {
           return res.status(403).json({ message: 'Forbidden' });
         }
 

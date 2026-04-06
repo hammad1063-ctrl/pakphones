@@ -9,6 +9,7 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   const { data: session, status } = useSession();
   const router = useRouter();
+  const userRole = (session?.user as { role?: string } | undefined)?.role;
 
   const handleSignOut = async () => {
     await signOut({ callbackUrl: '/' });
@@ -59,7 +60,7 @@ export default function Layout({ children }: LayoutProps) {
                   >
                     Profile
                   </Link>
-                  {session.user.role === 'admin' && (
+                  {userRole === 'admin' && (
                     <Link
                       href="/admin"
                       className={`px-3 py-2 rounded-md text-sm font-medium ${

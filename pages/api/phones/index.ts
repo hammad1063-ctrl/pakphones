@@ -11,6 +11,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(401).json({ message: 'Unauthorized' });
   }
 
+  const currentUser = session.user as { id?: string; role?: string };
+
   await connectToDatabase();
 
   switch (req.method) {
@@ -95,7 +97,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           images,
           location,
           specifications,
-          seller: session.user.id,
+          seller: currentUser.id,
         });
 
         await phone.save();
