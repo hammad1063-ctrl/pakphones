@@ -26,6 +26,7 @@ interface Phone {
     os: string;
   };
   seller: {
+    _id?: string;
     name: string;
     email: string;
     phone: string;
@@ -99,7 +100,7 @@ export default function PhoneDetail() {
     );
   }
 
-  const isOwner = session?.user?.id === phone.seller._id;
+  const isOwner = !!session?.user?.id && session.user.id === phone.seller._id;
 
   return (
     <div className="max-w-6xl mx-auto">
