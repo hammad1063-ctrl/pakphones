@@ -37,4 +37,5 @@ async function dbConnect() {
   return cached.conn;
 }
 
+export const connectToDatabase = dbConnect;
 export default dbConnect;
