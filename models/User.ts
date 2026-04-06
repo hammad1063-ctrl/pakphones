@@ -1,7 +1,29 @@
-import mongoose from 'mongoose';
+import mongoose, { Model, Schema } from 'mongoose';
 import bcrypt from 'bcryptjs';
 
-const UserSchema = new mongoose.Schema({
+interface IUser {
+  name: string;
+  email: string;
+  password: string;
+  phone: string;
+  city: string;
+  role: 'user' | 'admin';
+  profileImage: string;
+  isVerified: boolean;
+  verificationToken: string | null;
+  resetPasswordToken: string | null;
+  resetPasswordExpires: Date | null;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+interface IUserMethods {
+  comparePassword(candidatePassword: string): Promise<boolean>;
+}
+
+type UserModel = Model<IUser, {}, IUserMethods>;
+
+const UserSchema = new Schema<IUser, UserModel, IUserMethods>({
   name: {
     type: String,
     required: true,
@@ -88,4 +110,6 @@ UserSchema.pre('save', function(next) {
 // Index for email lookups
 UserSchema.index({ email: 1 });
 
-export default mongoose.models.User || mongoose.model('User', UserSchema);
+const User = (mongoose.models.User as UserModel) || mongoose.model<IUser, UserModel>('User', UserSchema);
+
+export default User;
