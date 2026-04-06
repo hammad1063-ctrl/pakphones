@@ -128,9 +128,7 @@ export default function Layout({ children }: LayoutProps) {
       <main className="max-w-7xl mx-auto py-5 px-4 sm:px-6 lg:px-8 fade-up">
         {children}
       </main>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center gap-3">
+
       <footer className="bg-[#111] text-gray-400 mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-2 sm:grid-cols-4 gap-8">
           <div className="col-span-2 sm:col-span-1">
@@ -169,5 +167,4 @@ export default function Layout({ children }: LayoutProps) {
       </footer>
     </div>
   );
-}
 }
