@@ -22,11 +22,11 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <div className="bg-blue-50 border-b border-blue-100 text-blue-900 text-xs sm:text-sm text-center py-2 px-4">
+      <div className="theme-topbar border-b border-blue-100 text-blue-900 text-xs sm:text-sm text-center py-2 px-4">
         Easy buying and selling across Pakistan. Post your ad in minutes.
       </div>
 
-      <header className="sticky top-0 z-40 bg-white border-b border-gray-200 shadow-sm">
+      <header className="theme-header sticky top-0 z-40 border-b border-gray-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center gap-3">
           <Link href="/" className="brand-font text-2xl font-bold text-gray-900 shrink-0">
             Q<span className="text-orange-500">MART</span>
@@ -38,15 +38,15 @@ export default function Layout({ children }: LayoutProps) {
               placeholder="Search phones by model, brand, or city"
               value={search}
               onChange={e => setSearch(e.target.value)}
-              className="flex-1 px-4 py-2 text-sm bg-white border border-gray-300 rounded-l-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:border-orange-500"
+              className="theme-input flex-1 px-4 py-2 text-sm rounded-l-lg placeholder-gray-400"
             />
-            <button type="submit" className="px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold rounded-r-lg transition-colors">
+            <button type="submit" className="theme-btn-primary px-4 py-2 text-sm font-semibold rounded-r-lg transition-colors">
               Search
             </button>
           </form>
 
           <div className="flex items-center gap-2 ml-auto text-sm">
-            <Link href="/phones/add" className="hidden sm:inline-flex items-center px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-colors">
+            <Link href="/phones/add" className="theme-btn-primary hidden sm:inline-flex items-center px-4 py-2 font-semibold rounded-lg transition-colors">
               Post an Ad
             </Link>
             {session ? (
@@ -86,7 +86,7 @@ export default function Layout({ children }: LayoutProps) {
               <Link
                 key={b}
                 href={`/?brand=${b}`}
-                className="shrink-0 px-3 py-1.5 text-xs font-medium text-gray-600 bg-gray-100 hover:bg-orange-50 hover:text-orange-600 rounded-full transition-colors"
+                className="theme-chip shrink-0 px-3 py-1.5 text-xs font-medium rounded-full transition-colors"
               >
                 {b}
               </Link>

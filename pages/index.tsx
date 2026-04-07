@@ -92,7 +92,7 @@ export default function Home() {
 
   return (
     <div className="space-y-6">
-      <section className="rounded-2xl bg-gradient-to-br from-blue-50 via-white to-orange-50 border border-blue-100 p-6 sm:p-8">
+      <section className="theme-panel-soft p-6 sm:p-8">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-5">
           <div className="max-w-2xl">
             <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight">
@@ -105,7 +105,7 @@ export default function Home() {
           <div className="flex gap-3">
             <Link
               href="/phones/add"
-              className="inline-flex items-center justify-center px-5 py-2.5 bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold rounded-lg transition-colors"
+              className="theme-btn-primary inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold rounded-lg transition-colors"
             >
               Post an Ad
             </Link>
@@ -121,16 +121,16 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="bg-white border border-gray-200 rounded-xl p-3 sm:p-4">
+      <div className="theme-panel p-3 sm:p-4">
         <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
           <button
             onClick={() => {
               clearFilters();
             }}
-            className={`shrink-0 px-4 py-2 rounded-full text-sm font-medium border transition-colors ${
+            className={`shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors ${
               !activeBrandFilter
-                ? 'bg-orange-500 border-orange-500 text-white'
-                : 'bg-gray-100 border-gray-200 text-gray-700 hover:border-orange-400 hover:text-orange-600'
+                ? 'theme-chip-active'
+                : 'theme-chip'
             }`}
           >
             All Brands
@@ -143,10 +143,10 @@ export default function Home() {
                 setFilters({ ...filters, brand: cleanBrand });
                 fetchPhones({ ...filters, brand: cleanBrand, search: '' });
               }}
-              className={`shrink-0 px-4 py-2 rounded-full text-sm font-medium border transition-colors ${
+              className={`shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                 activeBrandFilter === b
-                  ? 'bg-orange-500 border-orange-500 text-white'
-                  : 'bg-gray-100 border-gray-200 text-gray-700 hover:border-orange-400 hover:text-orange-600'
+                  ? 'theme-chip-active'
+                  : 'theme-chip'
               }`}
             >
               {b}
@@ -155,7 +155,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="bg-white border border-gray-200 rounded-xl p-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 items-end">
+      <div className="theme-panel p-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 items-end">
         <input
           type="text"
           placeholder="Search listings"
@@ -164,13 +164,13 @@ export default function Home() {
             setSearchTerm(e.target.value);
             fetchPhones({ search: e.target.value });
           }}
-          className="col-span-2 sm:col-span-1 lg:col-span-2 px-3 py-2 text-sm border border-gray-300 rounded focus:outline-none focus:border-orange-500"
+          className="theme-input col-span-2 sm:col-span-1 lg:col-span-2 px-3 py-2 text-sm rounded"
         />
         <select
           name="condition"
           value={filters.condition}
           onChange={handleFilterChange}
-          className="px-3 py-2 text-sm border border-gray-300 rounded focus:outline-none focus:border-orange-500"
+          className="theme-input px-3 py-2 text-sm rounded"
         >
           <option value="">All Conditions</option>
           {CONDITIONS.map((c) => (
@@ -183,7 +183,7 @@ export default function Home() {
           name="city"
           value={filters.city}
           onChange={handleFilterChange}
-          className="px-3 py-2 text-sm border border-gray-300 rounded focus:outline-none focus:border-orange-500"
+          className="theme-input px-3 py-2 text-sm rounded"
         >
           <option value="">All Cities</option>
           {CITIES.map((c) => (
@@ -199,7 +199,7 @@ export default function Home() {
             placeholder="Min Rs"
             value={filters.minPrice}
             onChange={handleFilterChange}
-            className="w-full px-3 py-2 text-sm border border-gray-300 rounded focus:outline-none focus:border-orange-500"
+            className="theme-input w-full px-3 py-2 text-sm rounded"
           />
         </div>
         <div className="flex gap-2">
@@ -209,7 +209,7 @@ export default function Home() {
             placeholder="Max Rs"
             value={filters.maxPrice}
             onChange={handleFilterChange}
-            className="w-full px-3 py-2 text-sm border border-gray-300 rounded focus:outline-none focus:border-orange-500"
+            className="theme-input w-full px-3 py-2 text-sm rounded"
           />
           <button
             onClick={clearFilters}
