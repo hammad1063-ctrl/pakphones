@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 
 export default function AddPhone() {
-  const { data: session, status } = useSession();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -34,16 +32,6 @@ export default function AddPhone() {
     },
   });
 
-  // Redirect if not authenticated
-  if (status === 'loading') {
-    return <div>Loading...</div>;
-  }
-
-  if (!session) {
-    router.push('/auth/signin');
-    return null;
-  }
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
 
@@ -68,12 +56,27 @@ export default function AddPhone() {
     const files = e.target.files;
     if (!files) return;
 
-    // For now, we'll use placeholder URLs. In production, you'd upload to Cloudinary
-    const newImages = Array.from(files).map((file, index) =>
-      `https://via.placeholder.com/400x300?text=Phone+Image+${images.length + index + 1}`
-    );
+    const selected = Array.from(files);
+    if (images.length + selected.length > 10) {
+      setError('You can upload up to 10 photos only.');
+      return;
+    }
 
-    setImages([...images, ...newImages]);
+    const fileToDataUrl = (file: File) =>
+      new Promise<string>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = () => reject(new Error('Failed to read image'));
+        reader.readAsDataURL(file);
+      });
+
+    try {
+      const encodedImages = await Promise.all(selected.map(fileToDataUrl));
+      setImages([...images, ...encodedImages]);
+      setError('');
+    } catch (uploadError) {
+      setError('Could not process selected images. Please try again.');
+    }
   };
 
   const removeImage = (index: number) => {
@@ -107,6 +110,8 @@ export default function AddPhone() {
 
       if (response.ok) {
         router.push('/');
+      } else if (response.status === 401) {
+        setError('Please sign in to publish this ad. You can fill the form first and sign in at submit time.');
       } else {
         setError(data.message || 'Failed to create listing');
       }
@@ -127,6 +132,22 @@ export default function AddPhone() {
           </div>
 
           <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-6">
+            {/* Ad title */}
+            <div>
+              <label className="block text-sm font-bold text-gray-900 mb-2 uppercase tracking-wide">
+                Ad Title *
+              </label>
+              <input
+                type="text"
+                name="title"
+                required
+                value={formData.title}
+                onChange={handleChange}
+                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+                placeholder="e.g., iPhone 13 Pro Max 256GB PTA Approved"
+              />
+            </div>
+
             {/* Phone Model & Brand */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
@@ -324,6 +345,97 @@ export default function AddPhone() {
                 placeholder="Describe the phone's condition, features, any scratches, screen issues, or other relevant details..."
               />
               <p className="text-xs text-gray-500 mt-1">Minimum 10 characters</p>
+            </div>
+
+            {/* Specifications */}
+            <div>
+              <h2 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">Phone Specifications</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-bold text-gray-900 mb-2 uppercase tracking-wide">
+                    Storage *
+                  </label>
+                  <input
+                    type="text"
+                    name="specifications.storage"
+                    required
+                    value={formData.specifications.storage}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+                    placeholder="e.g., 128GB"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-gray-900 mb-2 uppercase tracking-wide">
+                    RAM *
+                  </label>
+                  <input
+                    type="text"
+                    name="specifications.ram"
+                    required
+                    value={formData.specifications.ram}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+                    placeholder="e.g., 8GB"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-gray-900 mb-2 uppercase tracking-wide">
+                    Battery *
+                  </label>
+                  <input
+                    type="text"
+                    name="specifications.battery"
+                    required
+                    value={formData.specifications.battery}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+                    placeholder="e.g., 5000mAh"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-gray-900 mb-2 uppercase tracking-wide">
+                    Camera *
+                  </label>
+                  <input
+                    type="text"
+                    name="specifications.camera"
+                    required
+                    value={formData.specifications.camera}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+                    placeholder="e.g., 50MP + 12MP"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-gray-900 mb-2 uppercase tracking-wide">
+                    Display *
+                  </label>
+                  <input
+                    type="text"
+                    name="specifications.display"
+                    required
+                    value={formData.specifications.display}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+                    placeholder="e.g., 6.7 inch OLED"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-gray-900 mb-2 uppercase tracking-wide">
+                    Operating System *
+                  </label>
+                  <input
+                    type="text"
+                    name="specifications.os"
+                    required
+                    value={formData.specifications.os}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+                    placeholder="e.g., iOS 17 / Android 14"
+                  />
+                </div>
+              </div>
             </div>
 
             {/* Images */}

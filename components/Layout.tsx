@@ -68,6 +68,9 @@ export default function Layout({ children }: LayoutProps) {
               </>
             ) : (
               <>
+                <Link href="/phones/add" className="hidden sm:inline-flex items-center px-4 py-1.5 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded transition-colors text-xs uppercase tracking-wide">
+                  + Sell Phone
+                </Link>
                 <Link href="/auth/signin" className="hidden sm:inline-block px-3 py-1.5 text-gray-300 hover:text-white transition-colors font-medium">
                   Sign In
                 </Link>
@@ -113,6 +116,7 @@ export default function Layout({ children }: LayoutProps) {
               </>
             ) : (
               <>
+                <Link href="/phones/add" className="block text-sm text-orange-400 font-bold py-1" onClick={() => setMobileMenuOpen(false)}>+ Sell Phone</Link>
                 <Link href="/auth/signin" className="block text-sm text-gray-300 py-1" onClick={() => setMobileMenuOpen(false)}>Sign In</Link>
                 <Link href="/auth/signup" className="block text-sm text-orange-400 font-bold py-1" onClick={() => setMobileMenuOpen(false)}>Register Free</Link>
               </>
