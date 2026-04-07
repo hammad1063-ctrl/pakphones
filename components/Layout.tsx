@@ -22,8 +22,8 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <div className="theme-topbar border-b border-blue-100 text-blue-900 text-xs sm:text-sm text-center py-2 px-4">
-        Easy buying and selling across Pakistan. Post your ad in minutes.
+      <div className="theme-topbar border-b border-blue-100 text-blue-900 text-xs sm:text-sm text-center py-2 px-4 font-semibold">
+        New QMart Bright Theme Live - Post your ad in minutes.
       </div>
 
       <header className="theme-header sticky top-0 z-40 border-b border-gray-200 shadow-sm">
