@@ -66,7 +66,7 @@ export default function SignUp() {
       <div className="theme-panel max-w-md w-full space-y-8 p-7 sm:p-8">
         <div>
           <h2 className="text-center text-3xl font-extrabold text-gray-900">
-            Create your QMart account
+            Create your PakPhones account
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
             Or{' '}

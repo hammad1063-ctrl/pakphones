@@ -23,13 +23,13 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <div className="min-h-screen bg-slate-50">
       <div className="theme-topbar border-b border-blue-100 text-blue-900 text-xs sm:text-sm text-center py-2 px-4 font-semibold">
-        New QMart Bright Theme Live - Post your ad in minutes.
+        New PakPhones Bright Theme Live - Post your ad in minutes.
       </div>
 
       <header className="theme-header sticky top-0 z-40 border-b border-gray-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center gap-3">
           <Link href="/" className="brand-font text-2xl font-bold text-gray-900 shrink-0">
-            Q<span className="text-orange-500">MART</span>
+            PAK<span className="text-orange-500">PHONES</span>
           </Link>
 
           <form onSubmit={handleSearch} className="flex-1 hidden md:flex max-w-xl mx-3">
@@ -130,7 +130,7 @@ export default function Layout({ children }: LayoutProps) {
       <footer className="bg-white border-t border-gray-200 mt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-2 sm:grid-cols-4 gap-8">
           <div className="col-span-2 sm:col-span-1">
-            <p className="brand-font text-xl font-bold text-gray-900 mb-2">Q<span className="text-orange-500">MART</span></p>
+            <p className="brand-font text-xl font-bold text-gray-900 mb-2">PAK<span className="text-orange-500">PHONES</span></p>
             <p className="text-xs text-gray-600 leading-relaxed">Simple, trusted marketplace for buying and selling phones across Pakistan.</p>
           </div>
           <div>
@@ -160,7 +160,7 @@ export default function Layout({ children }: LayoutProps) {
           </div>
         </div>
         <div className="border-t border-gray-200 text-center text-xs py-4 text-gray-500">
-          &copy; {new Date().getFullYear()} QMart. All rights reserved.
+          &copy; {new Date().getFullYear()} PakPhones. All rights reserved.
         </div>
       </footer>
     </div>

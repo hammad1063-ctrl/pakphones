@@ -39,7 +39,7 @@ export default function SignIn() {
       <div className="theme-panel max-w-md w-full space-y-8 p-7 sm:p-8">
         <div>
           <h2 className="text-center text-3xl font-extrabold text-gray-900">
-            Sign in to QMart
+            Sign in to PakPhones
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
             Or{' '}
