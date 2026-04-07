@@ -92,70 +92,45 @@ export default function Home() {
 
   return (
     <div className="space-y-6">
-      {/* ── Hero banner ── */}
-      <div className="rounded-xl overflow-hidden relative bg-[#111] text-white min-h-[220px] flex items-center">
-        {/* Background decorative elements */}
-        <div className="absolute top-20 -right-20 w-64 h-64 rounded-full bg-orange-500/10 blur-3xl" />
-        <div className="absolute -bottom-20 left-1/3 w-80 h-80 rounded-full bg-blue-500/10 blur-3xl" />
-
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: 'linear-gradient(135deg,rgba(249,115,22,0.12) 0%,transparent 100%)',
-          }}
-        />
-
-        {/* Content */}
-        <div className="relative z-10 max-w-2xl mx-auto px-4 sm:px-10">
-          <h1 className="text-4xl sm:text-5xl font-bold leading-tight text-white">
-            Buy &amp; Sell<br />
-            <span className="text-orange-500">Premium Phones</span>
-          </h1>
-          <p className="mt-2 text-gray-300 text-sm sm:text-base">
-            Trusted marketplace for authentic phones in Pakistan
-          </p>
-
-          {session ? (
+      <section className="rounded-2xl bg-gradient-to-br from-blue-50 via-white to-orange-50 border border-blue-100 p-6 sm:p-8">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+          <div className="max-w-2xl">
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight">
+              Find the right phone in minutes
+            </h1>
+            <p className="mt-2 text-gray-600 text-sm sm:text-base">
+              Clean listings, simple filters, and quick posting for sellers across Pakistan.
+            </p>
+          </div>
+          <div className="flex gap-3">
             <Link
               href="/phones/add"
-              className="mt-5 inline-flex items-center px-6 py-2.5 bg-orange-500 hover:bg-orange-600 text-white text-sm font-bold rounded transition-colors"
+              className="inline-flex items-center justify-center px-5 py-2.5 bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold rounded-lg transition-colors"
             >
-              + LIST YOUR PHONE
+              Post an Ad
             </Link>
-          ) : (
-            <Link
-              href="/auth/signup"
-              className="mt-5 inline-flex items-center px-6 py-2.5 bg-orange-500 hover:bg-orange-600 text-white text-sm font-bold rounded transition-colors"
-            >
-              START SELLING FREE
-            </Link>
-          )}
-        </div>
-
-        {/* Stats strip */}
-        <div className="flex sm:flex-row gap-6 sm:gap-12 absolute bottom-6 right-6 sm:right-10 text-xs text-gray-300">
-          <div>
-            <p className="font-bold text-white text-sm">50K+</p>
-            <p>Active Listings</p>
-          </div>
-          <div>
-            <p className="font-bold text-white text-sm">100K+</p>
-            <p>Happy Buyers</p>
+            {!session && (
+              <Link
+                href="/auth/signin"
+                className="inline-flex items-center justify-center px-5 py-2.5 bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 text-sm font-semibold rounded-lg transition-colors"
+              >
+                Sign In
+              </Link>
+            )}
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* ── Quick-filter chips ── */}
-      <div>
-        <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-hide">
+      <div className="bg-white border border-gray-200 rounded-xl p-3 sm:p-4">
+        <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
           <button
             onClick={() => {
               clearFilters();
             }}
-            className={`shrink-0 px-4 py-1.5 rounded text-sm font-semibold border transition-colors ${
+            className={`shrink-0 px-4 py-2 rounded-full text-sm font-medium border transition-colors ${
               !activeBrandFilter
                 ? 'bg-orange-500 border-orange-500 text-white'
-                : 'bg-white border-gray-200 text-gray-700 hover:border-orange-500 hover:text-orange-500'
+                : 'bg-gray-100 border-gray-200 text-gray-700 hover:border-orange-400 hover:text-orange-600'
             }`}
           >
             All Brands
@@ -168,10 +143,10 @@ export default function Home() {
                 setFilters({ ...filters, brand: cleanBrand });
                 fetchPhones({ ...filters, brand: cleanBrand, search: '' });
               }}
-              className={`shrink-0 px-4 py-1.5 rounded text-sm font-semibold border transition-colors ${
+              className={`shrink-0 px-4 py-2 rounded-full text-sm font-medium border transition-colors ${
                 activeBrandFilter === b
                   ? 'bg-orange-500 border-orange-500 text-white'
-                  : 'bg-white border-gray-200 text-gray-700 hover:border-orange-500 hover:text-orange-500'
+                  : 'bg-gray-100 border-gray-200 text-gray-700 hover:border-orange-400 hover:text-orange-600'
               }`}
             >
               {b}
@@ -180,11 +155,10 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ── Advanced filters ── */}
       <div className="bg-white border border-gray-200 rounded-xl p-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 items-end">
         <input
           type="text"
-          placeholder="🔍  Search..."
+          placeholder="Search listings"
           value={searchTerm}
           onChange={(e) => {
             setSearchTerm(e.target.value);
@@ -242,33 +216,30 @@ export default function Home() {
             title="Clear"
             className="shrink-0 px-3 py-2 text-sm font-semibold bg-gray-100 hover:bg-gray-200 rounded transition-colors"
           >
-            ✕
+            Clear
           </button>
         </div>
       </div>
 
-      {/* ── Listings header ── */}
       <div className="flex items-center justify-between">
-        <h2 className="brand-font text-xl font-bold text-gray-900 uppercase tracking-wide">
+        <h2 className="text-xl font-bold text-gray-900">
           {activeBrandFilter ? `${activeBrandFilter} Phones` : 'Latest Listings'}
           <span className="ml-2 text-orange-500">({phones.length})</span>
         </h2>
-        {session && (
+        {(session || true) && (
           <Link
             href="/phones/add"
-            className="text-sm font-semibold text-orange-500 hover:text-orange-600 transition-colors"
+            className="text-sm font-semibold text-orange-600 hover:text-orange-700 transition-colors"
           >
-            + Add Listing
+            + Post Ad
           </Link>
         )}
       </div>
 
-      {/* ── Product grid ── */}
       {phones.length > 0 ? (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-5">
           {phones.map((phone) => (
             <Link key={phone._id} href={`/phones/${phone._id}`} className="product-card group block">
-              {/* Image */}
               <div className="relative bg-gray-50 h-44 overflow-hidden rounded">
                 <Image
                   src={phone.images[0] || '/placeholder.jpg'}
@@ -280,20 +251,19 @@ export default function Home() {
                   <ConditionBadge condition={phone.condition} />
                 </div>
               </div>
-              {/* Info */}
-              <div className="mt-2">
-                <p className="text-xs font-bold text-orange-500 uppercase tracking-widest mb-0.5">
+              <div className="p-3">
+                <p className="text-xs font-semibold text-orange-600 uppercase tracking-wide mb-1">
                   {phone.brand}
                 </p>
-                <h3 className="brand-font text-sm font-bold text-gray-900 uppercase leading-snug line-clamp-2 mb-1">
+                <h3 className="text-sm font-semibold text-gray-900 leading-snug line-clamp-2 mb-1 min-h-[2.6rem]">
                   {phone.title}
                 </h3>
-                <p className="text-xs text-gray-500 mb-2">📍 {phone.location.city}</p>
-                <p className="text-lg font-extrabold text-gray-900">
+                <p className="text-xs text-gray-500 mb-2">{phone.location.city}</p>
+                <p className="text-lg font-extrabold text-gray-900 mb-1">
                   Rs. <span className="text-orange-500">{phone.price.toLocaleString()}</span>
                 </p>
                 <div className="flex items-center justify-between mt-2 text-[10px] text-gray-400">
-                  <span>👁 {phone.views}</span>
+                  <span>{phone.views} views</span>
                   <span>
                     {new Date(phone.createdAt).toLocaleDateString('en-PK', { day: '2-digit', month: 'short' })}
                   </span>
@@ -304,7 +274,6 @@ export default function Home() {
         </div>
       ) : (
         <div className="bg-white border border-gray-200 rounded-xl text-center py-16 px-6">
-          <p className="text-5xl mb-4">📱</p>
           <p className="text-gray-700 font-semibold text-lg mb-1">No phones found</p>
           <p className="text-gray-400 text-sm">Try adjusting your filters or clear to see all listings.</p>
           <button
