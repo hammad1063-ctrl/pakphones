@@ -22,14 +22,12 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <div className="min-h-screen bg-[#f3f4f6]">
-
       {/* Announcement marquee */}
       <div className="bg-orange-500 text-white text-xs font-semibold h-7 flex items-center overflow-hidden">
         <div className="marquee-track px-4">
           Pakistan&apos;s #1 Phone Marketplace &nbsp;&bull;&nbsp; Buy New, Used &amp; Refurbished Phones &nbsp;&bull;&nbsp; List Your Phone for FREE &nbsp;&bull;&nbsp; Trusted Sellers Across All Major Cities
         </div>
       </div>
-
       {/* Main header */}
       <header className="sticky top-0 z-40 bg-[#111] text-white shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center gap-3">
@@ -79,11 +77,10 @@ export default function Layout({ children }: LayoutProps) {
               </>
             )}
             <button onClick={() => setMobileMenuOpen(p => !p)} className="sm:hidden p-1 text-gray-300 hover:text-white text-sm">
-              {mobileMenuOpen ? '✕' : '☰'}
+              {mobileMenuOpen ? 'X' : '='}
             </button>
           </div>
         </div>
-
         {/* Category / Brand strip */}
         <nav className="bg-[#1c1c1c] border-t border-white/10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-1 h-9 overflow-x-auto">
@@ -100,7 +97,6 @@ export default function Layout({ children }: LayoutProps) {
             <Link href="/?condition=refurbished" className="shrink-0 px-3 py-0.5 text-xs font-semibold text-gray-300 hover:text-purple-400 hover:bg-white/5 rounded transition-colors">Refurbished</Link>
           </div>
         </nav>
-
         {mobileMenuOpen && (
           <div className="sm:hidden bg-[#1a1a1a] border-t border-white/10 px-4 py-3 space-y-2">
             <form onSubmit={handleSearch} className="flex mb-3">
@@ -124,11 +120,9 @@ export default function Layout({ children }: LayoutProps) {
           </div>
         )}
       </header>
-
       <main className="max-w-7xl mx-auto py-5 px-4 sm:px-6 lg:px-8 fade-up">
         {children}
       </main>
-
       <footer className="bg-[#111] text-gray-400 mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-2 sm:grid-cols-4 gap-8">
           <div className="col-span-2 sm:col-span-1">
