@@ -123,12 +123,12 @@ export default function AddPhone() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f3f4f6]">
+    <div className="min-h-screen">
       <div className="max-w-3xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-lg shadow-lg">
-          <div className="bg-gradient-to-r from-[#111] to-[#1a1a1a] text-white p-6 sm:p-8">
-            <h1 className="brand-font text-3xl font-bold mb-2">POST YOUR AD</h1>
-            <p className="text-gray-300 text-sm">Fill in the details below to list your phone</p>
+        <div className="theme-panel overflow-hidden">
+          <div className="theme-panel-soft rounded-none p-6 sm:p-8 border-0 border-b">
+            <h1 className="brand-font text-3xl font-bold mb-2 text-gray-900">POST YOUR AD</h1>
+            <p className="text-gray-600 text-sm">Fill in the details below to list your phone</p>
           </div>
 
           <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-6">
@@ -143,7 +143,7 @@ export default function AddPhone() {
                 required
                 value={formData.title}
                 onChange={handleChange}
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+                className="theme-input w-full px-4 py-2.5 rounded-lg"
                 placeholder="e.g., iPhone 13 Pro Max 256GB PTA Approved"
               />
             </div>
@@ -160,7 +160,7 @@ export default function AddPhone() {
                   required
                   value={formData.model}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+                  className="theme-input w-full px-4 py-2.5 rounded-lg"
                   placeholder="e.g., iPhone 13 Pro Max, Samsung Galaxy S21"
                 />
               </div>
@@ -174,7 +174,7 @@ export default function AddPhone() {
                   required
                   value={formData.brand}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+                  className="theme-input w-full px-4 py-2.5 rounded-lg"
                 >
                   <option value="">Select Brand</option>
                   <option value="Samsung">Samsung</option>
@@ -204,7 +204,7 @@ export default function AddPhone() {
                   required
                   value={formData.price}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+                  className="theme-input w-full px-4 py-2.5 rounded-lg"
                   placeholder="e.g., 150000"
                   min="0"
                 />
@@ -219,7 +219,7 @@ export default function AddPhone() {
                   required
                   value={formData.condition}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+                  className="theme-input w-full px-4 py-2.5 rounded-lg"
                 >
                   <option value="">Select Condition</option>
                   <option value="new">New</option>
@@ -239,7 +239,7 @@ export default function AddPhone() {
                   name="ptaStatus"
                   value={formData.ptaStatus}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+                  className="theme-input w-full px-4 py-2.5 rounded-lg"
                 >
                   <option value="pta">PTA Approved</option>
                   <option value="nonpta">Non-PTA</option>
@@ -254,7 +254,7 @@ export default function AddPhone() {
                   name="completeBox"
                   value={formData.completeBox}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+                  className="theme-input w-full px-4 py-2.5 rounded-lg"
                 >
                   <option value="yes">Yes</option>
                   <option value="no">No</option>
@@ -272,7 +272,7 @@ export default function AddPhone() {
                   name="originalCharger"
                   value={formData.originalCharger}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+                  className="theme-input w-full px-4 py-2.5 rounded-lg"
                 >
                   <option value="yes">Yes</option>
                   <option value="partial">Partial</option>
@@ -288,7 +288,7 @@ export default function AddPhone() {
                   name="hasBeenRepaired"
                   value={formData.hasBeenRepaired}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+                  className="theme-input w-full px-4 py-2.5 rounded-lg"
                 >
                   <option value="no">No</option>
                   <option value="minor">Minor Repairs</option>
@@ -341,7 +341,7 @@ export default function AddPhone() {
                 value={formData.description}
                 onChange={handleChange}
                 rows={4}
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+                className="theme-input w-full px-4 py-2.5 rounded-lg"
                 placeholder="Describe the phone's condition, features, any scratches, screen issues, or other relevant details..."
               />
               <p className="text-xs text-gray-500 mt-1">Minimum 10 characters</p>
@@ -361,7 +361,7 @@ export default function AddPhone() {
                     required
                     value={formData.specifications.storage}
                     onChange={handleChange}
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+                    className="theme-input w-full px-4 py-2.5 rounded-lg"
                     placeholder="e.g., 128GB"
                   />
                 </div>
@@ -375,7 +375,7 @@ export default function AddPhone() {
                     required
                     value={formData.specifications.ram}
                     onChange={handleChange}
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+                    className="theme-input w-full px-4 py-2.5 rounded-lg"
                     placeholder="e.g., 8GB"
                   />
                 </div>
@@ -389,7 +389,7 @@ export default function AddPhone() {
                     required
                     value={formData.specifications.battery}
                     onChange={handleChange}
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+                    className="theme-input w-full px-4 py-2.5 rounded-lg"
                     placeholder="e.g., 5000mAh"
                   />
                 </div>
@@ -403,7 +403,7 @@ export default function AddPhone() {
                     required
                     value={formData.specifications.camera}
                     onChange={handleChange}
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+                    className="theme-input w-full px-4 py-2.5 rounded-lg"
                     placeholder="e.g., 50MP + 12MP"
                   />
                 </div>
@@ -417,7 +417,7 @@ export default function AddPhone() {
                     required
                     value={formData.specifications.display}
                     onChange={handleChange}
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+                    className="theme-input w-full px-4 py-2.5 rounded-lg"
                     placeholder="e.g., 6.7 inch OLED"
                   />
                 </div>
@@ -431,7 +431,7 @@ export default function AddPhone() {
                     required
                     value={formData.specifications.os}
                     onChange={handleChange}
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+                    className="theme-input w-full px-4 py-2.5 rounded-lg"
                     placeholder="e.g., iOS 17 / Android 14"
                   />
                 </div>
@@ -448,7 +448,7 @@ export default function AddPhone() {
                 multiple
                 accept="image/*"
                 onChange={handleImageUpload}
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+                className="theme-input w-full px-4 py-2.5 rounded-lg"
               />
               <p className="text-xs text-gray-500 mt-1">
                 Upload up to 10 clear photos. First image will be shown as main image.
@@ -486,7 +486,7 @@ export default function AddPhone() {
               <button
                 type="submit"
                 disabled={loading}
-                className="flex-1 px-6 py-3 bg-orange-500 hover:bg-orange-600 disabled:bg-gray-400 text-white font-bold uppercase tracking-wide rounded-lg transition-colors"
+                className="theme-btn-primary flex-1 px-6 py-3 disabled:bg-gray-400 text-white font-bold uppercase tracking-wide rounded-lg transition-colors"
               >
                 {loading ? 'Publishing...' : '✓ Publish Your Ad'}
               </button>

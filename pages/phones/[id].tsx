@@ -83,7 +83,7 @@ export default function PhoneDetail() {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-500"></div>
       </div>
     );
   }
@@ -93,7 +93,7 @@ export default function PhoneDetail() {
       <div className="text-center py-12">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Phone Not Found</h2>
         <p className="text-gray-600 mb-6">The phone you're looking for doesn't exist or has been removed.</p>
-        <Link href="/" className="text-blue-600 hover:text-blue-800">
+        <Link href="/" className="text-orange-600 hover:text-orange-700 font-medium">
           ← Back to listings
         </Link>
       </div>
@@ -107,7 +107,7 @@ export default function PhoneDetail() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Images */}
         <div className="space-y-4">
-          <div className="relative h-96 bg-gray-100 rounded-lg overflow-hidden">
+          <div className="theme-panel relative h-96 bg-gray-50 rounded-xl overflow-hidden">
             <Image
               src={phone.images[currentImageIndex] || '/placeholder-phone.jpg'}
               alt={phone.title}
@@ -119,13 +119,13 @@ export default function PhoneDetail() {
               <>
                 <button
                   onClick={prevImage}
-                  className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-opacity-75"
+                  className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/90 text-gray-700 rounded-full w-10 h-10 flex items-center justify-center border border-gray-200 hover:bg-white"
                 >
                   ‹
                 </button>
                 <button
                   onClick={nextImage}
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-opacity-75"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/90 text-gray-700 rounded-full w-10 h-10 flex items-center justify-center border border-gray-200 hover:bg-white"
                 >
                   ›
                 </button>
@@ -140,7 +140,7 @@ export default function PhoneDetail() {
                   key={index}
                   onClick={() => setCurrentImageIndex(index)}
                   className={`flex-shrink-0 w-20 h-20 rounded-md overflow-hidden border-2 ${
-                    index === currentImageIndex ? 'border-blue-500' : 'border-gray-300'
+                    index === currentImageIndex ? 'border-orange-500' : 'border-gray-300'
                   }`}
                 >
                   <Image
@@ -169,7 +169,7 @@ export default function PhoneDetail() {
             </div>
           </div>
 
-          <div className="text-3xl font-bold text-blue-600">
+          <div className="text-3xl font-bold text-orange-600">
             Rs. {phone.price.toLocaleString()}
           </div>
 
@@ -185,7 +185,7 @@ export default function PhoneDetail() {
           )}
 
           {/* Seller Information */}
-          <div className="bg-gray-50 rounded-lg p-4">
+          <div className="theme-panel rounded-lg p-4">
             <h3 className="text-lg font-semibold text-gray-900 mb-3">Seller Information</h3>
             <div className="space-y-2">
               <p><strong>Name:</strong> {phone.seller.name}</p>
@@ -197,17 +197,14 @@ export default function PhoneDetail() {
           {/* Action Buttons */}
           <div className="flex space-x-4">
             {!phone.isSold && (
-              <button className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 font-medium">
+              <button className="theme-btn-primary flex-1 text-white py-3 px-6 rounded-md font-medium">
                 Contact Seller
               </button>
             )}
 
             {isOwner && (
               <div className="flex space-x-2">
-                <Link
-                  href={`/phones/${phone._id}/edit`}
-                  className="bg-gray-600 text-white py-3 px-6 rounded-md hover:bg-gray-700 font-medium"
-                >
+                <Link href={`/phones/${phone._id}/edit`} className="bg-gray-700 text-white py-3 px-6 rounded-md hover:bg-gray-800 font-medium">
                   Edit
                 </Link>
                 <button className="bg-red-600 text-white py-3 px-6 rounded-md hover:bg-red-700 font-medium">
@@ -220,13 +217,13 @@ export default function PhoneDetail() {
       </div>
 
       {/* Description */}
-      <div className="mt-8 bg-white rounded-lg shadow p-6">
+      <div className="theme-panel mt-8 p-6">
         <h2 className="text-xl font-semibold text-gray-900 mb-4">Description</h2>
         <p className="text-gray-700 whitespace-pre-line">{phone.description}</p>
       </div>
 
       {/* Specifications */}
-      <div className="mt-6 bg-white rounded-lg shadow p-6">
+      <div className="theme-panel mt-6 p-6">
         <h2 className="text-xl font-semibold text-gray-900 mb-4">Specifications</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="flex justify-between py-2 border-b border-gray-200">
@@ -258,7 +255,7 @@ export default function PhoneDetail() {
 
       {/* Back Button */}
       <div className="mt-8">
-        <Link href="/" className="text-blue-600 hover:text-blue-800">
+        <Link href="/" className="text-orange-600 hover:text-orange-700 font-medium">
           ← Back to listings
         </Link>
       </div>
