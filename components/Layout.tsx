@@ -46,7 +46,7 @@ export default function Layout({ children }: LayoutProps) {
           </form>
 
           <div className="flex items-center gap-2 ml-auto text-sm">
-            <Link href="/phones/add" className="theme-btn-primary hidden sm:inline-flex items-center px-4 py-2 font-semibold rounded-lg transition-colors">
+            <Link href="/sell-your-device" className="theme-btn-primary hidden sm:inline-flex items-center px-4 py-2 font-semibold rounded-lg transition-colors">
               Post an Ad
             </Link>
             {session ? (
@@ -106,7 +106,7 @@ export default function Layout({ children }: LayoutProps) {
               />
               <button type="submit" className="px-3 py-2 bg-orange-500 text-white text-sm font-semibold rounded-r-lg">Go</button>
             </form>
-            <Link href="/phones/add" className="block text-sm font-semibold text-orange-600" onClick={() => setMobileMenuOpen(false)}>Post an Ad</Link>
+            <Link href="/sell-your-device" className="block text-sm font-semibold text-orange-600" onClick={() => setMobileMenuOpen(false)}>Post an Ad</Link>
             {session ? (
               <>
                 <Link href="/profile" className="block text-sm text-gray-700" onClick={() => setMobileMenuOpen(false)}>My Account</Link>
@@ -154,7 +154,7 @@ export default function Layout({ children }: LayoutProps) {
             <ul className="space-y-1.5 text-xs text-gray-600">
               <li><Link href="/auth/signin" className="hover:text-orange-400 transition-colors">Sign In</Link></li>
               <li><Link href="/auth/signup" className="hover:text-orange-400 transition-colors">Register</Link></li>
-              <li><Link href="/phones/add" className="hover:text-orange-500 transition-colors">Post an Ad</Link></li>
+              <li><Link href="/sell-your-device" className="hover:text-orange-500 transition-colors">Post an Ad</Link></li>
               <li><Link href="/profile" className="hover:text-orange-500 transition-colors">My Profile</Link></li>
             </ul>
           </div>

@@ -104,7 +104,7 @@ export default function Home() {
           </div>
           <div className="flex gap-3">
             <Link
-              href="/phones/add"
+              href="/sell-your-device"
               className="theme-btn-primary inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold rounded-lg transition-colors"
             >
               Post an Ad
@@ -228,7 +228,7 @@ export default function Home() {
         </h2>
         {(session || true) && (
           <Link
-            href="/phones/add"
+            href="/sell-your-device"
             className="text-sm font-semibold text-orange-600 hover:text-orange-700 transition-colors"
           >
             + Post Ad
